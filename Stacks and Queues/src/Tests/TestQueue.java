@@ -1,4 +1,6 @@
-import edu.princeton.cs.algs4.Queue;
+package Tests;
+
+import StackQueue.Queue;
 import org.junit.Test;
 
 import java.util.Random;
@@ -19,7 +21,7 @@ public class TestQueue {
     @Test
     public void testEnqDeq() {
         Queue<Integer> myQ = new Queue<>();
-        Queue<Integer> javaQ = new Queue<>();
+        edu.princeton.cs.algs4.Queue<Integer> javaQ = new edu.princeton.cs.algs4.Queue<>();
 
         myQ.enqueue(5);
         javaQ.enqueue(5);
@@ -43,7 +45,7 @@ public class TestQueue {
     @Test
     public void test3() {
         Queue<Integer> myQ = new Queue<>();
-        Queue<Integer> javaQ = new Queue<>();
+        edu.princeton.cs.algs4.Queue<Integer> javaQ = new edu.princeton.cs.algs4.Queue<>();
 
         final int SIZE1 = 8, SIZE2 = 13, SIZE3 = 17;
         Random rand = new Random();
@@ -89,7 +91,7 @@ public class TestQueue {
     @Test
     public void testIterator() {
         Queue<Integer> myQ = new Queue<>();
-        Queue<Integer> javaQ = new Queue<>();
+        edu.princeton.cs.algs4.Queue<Integer> javaQ = new edu.princeton.cs.algs4.Queue<>();
 
         final int SIZE1 = 7;
         Random rand = new Random();
