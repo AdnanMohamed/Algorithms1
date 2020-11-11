@@ -1,7 +1,21 @@
+/*  This is an implementation for the Dequeue data-structure.
+
+    @Author: Adnan H. Mohamed
+ */
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class Deque<Item> implements Iterable<Item> {
+
+    /* #### CLASS INVARIANT  ####
+        1- head, always points to the first node in the
+           doubly-linked-list. (null if the dequeue is empty.)
+        2- tail, always points to the last node in the
+           doubly-linked-list. (null if the dequeue is empty.)
+        3- size, contains the number of items in the dequeue.
+     */
+
 
     private class Node {
         Item data;
@@ -38,21 +52,35 @@ public class Deque<Item> implements Iterable<Item> {
     // add the item to the front
     public void addFirst(Item item) {
         Node node = new Node(item, head, null);
+
+        // only when the deque is not empty, make the old first
+        // node's previous pointer point to the new first node.
         if (!isEmpty())
             head.prev = node;
+
+        // maintain the head invariant.
         head = node;
+
+        // maintain the tail invariant.
         if (size == 0) {
             tail = head;
         }
+
         size++;
     }
 
     // add the item to the back
     public void addLast(Item item) {
+        // using the addFirst method in case the
+        // dequeue is empty when calling this method
+        // since both do the same thing in this case.
         if (isEmpty()) {
             addFirst(item);
             return;
         }
+
+        // Creating the new last node and making the old
+        // last node point to it. Then maintaining the tail invariant.
         Node node = new Node(item,null, tail);
         tail.next = node;
         tail = node;
@@ -64,11 +92,19 @@ public class Deque<Item> implements Iterable<Item> {
         if (isEmpty()) {
             throw new NoSuchElementException("There is no element to be removed.");
         }
+
+        // Retrieving the data in first node to be returned
+        // Then pointing the head to the 2nd node to become the new first node.
         Item item = head.data;
         head = head.next;
+
         if (size() == 1) {
+            // maintaining the tail to be
+            // pointing to the last element
+            // which in this case is the first element as well.
             tail = head;
         }
+
         size--;
 
         return item;
@@ -79,9 +115,15 @@ public class Deque<Item> implements Iterable<Item> {
         if (isEmpty()) {
             throw new NoSuchElementException("There is no element to be removed.");
         }
+        // using removeFirst function becuase it
+        // already implements the same functionality
+        // for size == 1.
         if (size == 1) {
             return removeFirst();
         }
+        // Retrieving the data in the last node
+        // then point the tail to before last node
+        // to become the new last node.
         Item item = tail.data;
         tail = tail.prev;
         size--;
