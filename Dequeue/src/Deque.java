@@ -35,8 +35,7 @@ public class Deque<Item> implements Iterable<Item> {
 
     // construct an empty deque
     public Deque() {
-        head = new Node();
-        tail = head;
+
     }
 
     // is the deque empty?
@@ -51,6 +50,10 @@ public class Deque<Item> implements Iterable<Item> {
 
     // add the item to the front
     public void addFirst(Item item) {
+        if (item == null) {
+            throw new IllegalArgumentException();
+        }
+
         Node node = new Node(item, head, null);
 
         // only when the deque is not empty, make the old first
@@ -71,6 +74,10 @@ public class Deque<Item> implements Iterable<Item> {
 
     // add the item to the back
     public void addLast(Item item) {
+        if (item == null) {
+            throw new IllegalArgumentException();
+        }
+
         // using the addFirst method in case the
         // dequeue is empty when calling this method
         // since both do the same thing in this case.
@@ -96,9 +103,18 @@ public class Deque<Item> implements Iterable<Item> {
         // Retrieving the data in first node to be returned
         // Then pointing the head to the 2nd node to become the new first node.
         Item item = head.data;
-        head = head.next;
 
         if (size() == 1) {
+
+            head = tail = null;
+            size--;
+            return item;
+        }
+
+        head.next.prev = null;
+        head = head.next;
+
+        if (size == 2) {
             // maintaining the tail to be
             // pointing to the last element
             // which in this case is the first element as well.
@@ -125,6 +141,7 @@ public class Deque<Item> implements Iterable<Item> {
         // then point the tail to before last node
         // to become the new last node.
         Item item = tail.data;
+        tail.prev.next = null;
         tail = tail.prev;
         size--;
         return item;
@@ -157,13 +174,27 @@ public class Deque<Item> implements Iterable<Item> {
     // unit testing (required)
     public static void main(String[] args) {
         Deque<Integer> d = new Deque<>();
-        assert d.isEmpty();
+        d.addFirst(5);
+        d.removeFirst();
+        d.isEmpty();
+
+//        d.addFirst(1);
+//        d.addFirst(2);
+//        d.addLast(55);
+//        d.addFirst(3);
+//        d.addLast(77);
+//        d.removeFirst();
+//        d.removeLast();
+
+        Iterator<Integer> it = d.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
 
         for (int i = 1; i < 6; i++) {
             d.addFirst(i);
         }
 
-        assert !d.isEmpty();
 
         for (int i = 1; i < 6; i++) {
             System.out.println(d.removeFirst());
