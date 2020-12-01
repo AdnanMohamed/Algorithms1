@@ -1,7 +1,7 @@
 import java.util.Comparator;
 
 public class Point implements Comparable<Point> {
-    private final Integer x, y;
+    private final int x, y;
 
     // constructs the point (x, y)
     public Point(int x, int y) {
@@ -51,19 +51,5 @@ public class Point implements Comparable<Point> {
             if (p0.slopeTo(p1) > p0.slopeTo(p2)) return 1;
             return 0;
         }
-    }
-
-    // for debugging.
-    @Override
-    public boolean equals(Object that) {
-        return this.compareTo((Point)that) == 0;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash = (hash * 397) ^ x.hashCode();
-        hash = (hash * 397) ^ y.hashCode();
-        return hash;
     }
 }

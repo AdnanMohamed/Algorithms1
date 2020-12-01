@@ -70,33 +70,33 @@ public class BruteCollinearPoints {
     }
 
     public static void main(String[] args) {
-        final int size = 13;
-        Point[] pts = new Point[size];
-        Random rand = new Random();
-
-        Set<Point> set = new HashSet<Point>();
-        int i = 0;
-        while (set.size() < size) {
-            int x = rand.nextInt(5);
-            int y = rand.nextInt(5);
-            Point p = new Point(x, y);
-            if (!set.contains(p)) {
-                set.add(p);
-                pts[i++] = p;
-            }
-        }
-        System.out.println("Printing the points:-");
-        for (Point p : pts) {
-            System.out.print(p + ", ");
-        }
-        System.out.println();
-
-        BruteCollinearPoints collinearPoints = new BruteCollinearPoints(pts);
-        if (collinearPoints.numberOfSegments() > 0) {
-            System.out.println("Printing the points making a segment:-");
-            for (LineSegment lineSegment : collinearPoints.segments()) {
-                System.out.println(lineSegment);
-            }
-        }
+//        final int size = 13;
+//        Point[] pts = new Point[size];
+//        Random rand = new Random();
+//
+//        Set<Point> set = new HashSet<Point>();
+//        int i = 0;
+//        while (set.size() < size) {
+//            int x = rand.nextInt(5);
+//            int y = rand.nextInt(5);
+//            Point p = new Point(x, y);
+//            if (!set.contains(p)) {
+//                set.add(p);
+//                pts[i++] = p;
+//            }
+//        }
+//        System.out.println("Printing the points:-");
+//        for (Point p : pts) {
+//            System.out.print(p + ", ");
+//        }
+//        System.out.println();
+//
+//        BruteCollinearPoints collinearPoints = new BruteCollinearPoints(pts);
+//        if (collinearPoints.numberOfSegments() > 0) {
+//            System.out.println("Printing the points making a segment:-");
+//            for (LineSegment lineSegment : collinearPoints.segments()) {
+//                System.out.println(lineSegment);
+//            }
+//        }
     }
 }
