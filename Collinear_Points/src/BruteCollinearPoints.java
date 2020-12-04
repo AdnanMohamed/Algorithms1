@@ -38,6 +38,10 @@ public class BruteCollinearPoints {
     }
 
     private void validate(Point[] pts) {
+        if (pts == null) {
+            throw new IllegalArgumentException("The array of points is null.");
+        }
+
         for (Point p : pts) {
             if (p == null) {
                 throw new IllegalArgumentException("There is a null point");
